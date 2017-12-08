@@ -1,0 +1,45 @@
+<div>
+    <h2>Sign up</h2>
+    <form name="form-signup" role="form">
+        <div>
+            <label for="name">Name</label>
+            <input type="text" name="name" required />
+            <span ng-show="form.name.$dirty && form.name.$error.required" class="signUpRequire">For animal safety, Name is required</span>
+        </div>
+
+        <div>
+            <label for="surname">Surname</label>
+            <input type="text" name="surname" required />
+            <span ng-show="form.surname.$dirty && form.surname.$error.required" class="signUpRequire">For animal safety, Surname is required</span>
+        </div>
+
+        <div>
+            <label for="username">Username</label>
+            <input type="text" name="username" required />
+            <span ng-show="form.username.$dirty && form.username.$error.required" class="signUpRequire">So that the rest of users see your data, Username is required</span>
+        </div>
+
+        <div>
+            <label for="email">Email</label>
+            <input type="text" name="Email" required />
+            <span ng-show="form.email.$dirty && form.email.$error.required" class="signUpRequire">Because you can contact, it will not be displayed to other users, Email is required</span>
+        </div>
+
+        <div>
+            <label for="password">Password</label>
+            <input type="text" name="password" required />
+            <span ng-show="form.password.$dirty && form.password.$error.required" class="signUpRequire">Password is required</span>
+        </div>
+
+        <div>
+            <label for="validation">Email Validation</label>
+            <input type="text" name="validation" required />
+            <span ng-show="form.validation.$dirty && form.validation.$error.required" class="signUpRequire">Validating the password is required</span>
+        </div>
+
+        <div>
+            <button type="submit" ng-disabled="form.$invalid || vm.dataLoading">Submit</button>
+            <a href=< !-- possar ruta del Login -->    >   Login</a>
+        </div>
+    </form>
+</div>

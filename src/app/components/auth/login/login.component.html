@@ -1,0 +1,21 @@
+<div>
+    <h2>Login</h2>
+    <form name="form-login" role="form">
+        <div>
+            <label for="email">Email</label>
+            <input type="text" name="email" required />
+            <span ng-show="form.email.$dirty && form.email.$error.required" class="loginRequire">Email is required</span>
+        </div>
+
+        <div>
+            <label for="password">Password</label>
+            <input type="password" name="password" required />
+            <span ng-show="form.password.$dirty && form.password.$error.required" class="loginRequire">Password is required</span>
+        </div>
+
+        <div>
+            <button type="submit" ng-disabled="form.$invalid || vm.dataLoading">Login</button>
+            <a href=< !-- possar ruta de Signup -->    >   Sign Up</a>
+        </div>
+    </form>
+</div>
