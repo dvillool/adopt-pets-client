@@ -1,43 +1,40 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-
+import { AuthService } from '../../../services/auth.service';
 import { User } from '../../../models/user.model';
 
 
 @Component({
   selector: 'app-login',
-  templateUrl: './auth/login.component.html',
-  styleUrls: ['./auth/login.component.css']
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-}
-
-export class AuthLoginComponent {
-
   user = new User({
-    email: '',
+    username: '',
     password: ''
   });
 
   error: string;
 
   constructor(
+    private auth: AuthService,
     private router: Router
   ) { }
 
+  ngOnInit() {
+  }
+
   login() {
     this.error = null;
-    this.auth.login(this.user)      //error!!!!! (no se perque)
+    this.auth.login(this.user)
       .subscribe(
-        () => this.router.navigate(['/auth/me']),
+        () => this.router.navigate(['/tasks']),
         (err) => this.error = err
       );
   }
+
 }

@@ -26,20 +26,20 @@
         </div>
 
         <div>
-            <label for="password">Password</label>
-            <input type="text" name="password" required />
-            <span ng-show="form.password.$dirty && form.password.$error.required" class="signUpRequire">Password is required</span>
-        </div>
-
-        <div>
             <label for="validation">Email Validation</label>
             <input type="text" name="validation" required />
             <span ng-show="form.validation.$dirty && form.validation.$error.required" class="signUpRequire">Validating the password is required</span>
         </div>
 
         <div>
+            <label for="password">Password</label>
+            <input type="text" name="password" required />
+            <span ng-show="form.password.$dirty && form.password.$error.required" class="signUpRequire">Password is required</span>
+        </div>
+
+        <div>
             <button type="submit" ng-disabled="form.$invalid || vm.dataLoading">Submit</button>
-            <a href=< !-- possar ruta del Login -->    >   Login</a>
+            <a href='/auth/login'>Login</a>
         </div>
     </form>
 </div>

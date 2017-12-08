@@ -1,23 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { AuthService } from '../../../services/auth.service';
 import { User } from '../../../models/user.model';
+
 
 @Component({
   selector: 'app-signup',
-  templateUrl: './auth/signup.component.html',
-  styleUrls: ['./auth/signup.component.css']
+  templateUrl: './signup.component.html',
+  styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-}
-
-export class AuthSignupComponent {
 
   user = new User({
     name: '',
@@ -30,12 +23,16 @@ export class AuthSignupComponent {
   error: string;
 
   constructor(
+    private auth: AuthService,
     private router: Router
   ) { }
 
+  ngOnInit() {
+  }
+
   signup() {
     this.error = null;
-    this.auth.signup(this.user).subscribe(            //error!!!!! (no se perque)
+    this.auth.signup(this.user).subscribe(
       () => this.router.navigate(['/me']),
       (err) => this.error = err
     );
