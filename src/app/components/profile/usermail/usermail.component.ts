@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import {AuthService} from '../../../services/auth.service'
+
 @Component({
   selector: 'app-usermail',
   templateUrl: './usermail.component.html',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsermailComponent implements OnInit {
 
-  constructor() { }
+  user;
+
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
+    this.authService.me()
+      .then((user) => this.user = user);
   }
 
 }

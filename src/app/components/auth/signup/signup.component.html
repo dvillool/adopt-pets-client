@@ -20,7 +20,7 @@
 
         <div class="field" [ngClass]="{'has-error': feedbackEnabled && myUsername.errors}">
             <label>Username</label>
-            <input type="text" name="username" [(ngModel)]="user.username" #myUsername="ngModel" required minlength="6" [disabled]="processing" />
+            <input type="text" name="username" [(ngModel)]="user.username" #myUsername="ngModel" required minlength="3" [disabled]="processing" />
             <div *ngIf="feedbackEnabled && myUsername.errors">
                 <p *ngIf="myUsername.errors.required" class="validation">username required</p>
                 <p *ngIf="myUsername.errors.minlength" class="validation">username is too short</p>
@@ -45,7 +45,7 @@
         </div>
 
         <div class="field submit">
-            <button type="submit" [disabled]="processing">Login</button>
+            <button type="submit" [disabled]="processing">SignUp</button>
             <div *ngIf="feedbackEnabled && myForm.invalid">
                 <p class="validation">there are errors in the form, please review the fields</p>
             </div>

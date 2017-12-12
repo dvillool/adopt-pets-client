@@ -31,22 +31,16 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  submitForm(theForm) {
+  login(theForm) {
     this.feedbackEnabled = true;
+    this.error = null;
     if (theForm.valid) {
       this.processing = true;
-      console.log('here we submit the form', theForm);
-      // authService.login(this.username, this.password).
-    }
-  }
-
-  login(theForm) {
-    this.error = null;
-    this.auth.login(this.user)
+      this.auth.login(this.user)
       .subscribe(
         () => this.router.navigate(['/profile']),
         (err) => this.error = err
       );
+    }
   }
-
 }

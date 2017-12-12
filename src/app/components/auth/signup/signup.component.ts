@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 import { AuthService } from '../../../services/auth.service';
 import { User } from '../../../models/user.model';
@@ -26,7 +26,7 @@ export class SignupComponent implements OnInit {
   error: string;
 
   constructor(
-    private auth: AuthService,
+    private authService: AuthService,
     private router: Router
   ) { }
 
@@ -37,8 +37,11 @@ export class SignupComponent implements OnInit {
     this.feedbackEnabled = true;
     if (theForm.valid) {
       this.processing = true;
-      console.log('here we submit the form', theForm);
-      // authService.login(this.username, this.password).
+      this.authService.signup(this.user)
+        .subscribe((data) => {
+          console.log(data);
+          this.router.navigate(['profile']);
+        });
     }
   }
 }

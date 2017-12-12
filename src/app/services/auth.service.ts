@@ -6,7 +6,6 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/catch';
 
-
 import { environment } from '../../environments/environment';
 import { User } from '../models/user.model';
 
@@ -25,7 +24,7 @@ export class AuthService {
 
   signup(user: User) {
     const options = new RequestOptions();
-    options.withCredentials = true;
+    options.withCredentials = true;  
     return this.http.post(apiUrl + '/signup', user, options)
       .map(res => {
         this.setUser(new User(res.json()));
@@ -54,9 +53,6 @@ export class AuthService {
   }
 
   me() {
-    // if (this.loaded) {
-    //   return Promise.resolve(this.user);
-    // }
     const options = new RequestOptions();
     options.withCredentials = true;
     return this.http.get(apiUrl + '/me', options)
