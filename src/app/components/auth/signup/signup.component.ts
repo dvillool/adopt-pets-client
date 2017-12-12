@@ -12,12 +12,15 @@ import { User } from '../../../models/user.model';
 })
 export class SignupComponent implements OnInit {
 
+  feedbackEnabled = false;
+  processing = false;
+
   user = new User({
-    name: '',
-    surname: '',
-    username: '',
-    email: '',
-    password: ''
+    name: null,
+    surname: null,
+    username: null,
+    email: null,
+    password: null
   });
 
   error: string;
@@ -30,11 +33,12 @@ export class SignupComponent implements OnInit {
   ngOnInit() {
   }
 
-  signup() {
-    this.error = null;
-    this.auth.signup(this.user).subscribe(
-      () => this.router.navigate(['/me']),
-      (err) => this.error = err
-    );
+  Signup(theForm) {
+    this.feedbackEnabled = true;
+    if (theForm.valid) {
+      this.processing = true;
+      console.log('here we submit the form', theForm);
+      // authService.login(this.username, this.password).
+    }
   }
 }

@@ -1,45 +1,54 @@
 <div>
     <h2>Sign up</h2>
-    <form name="form-signup" role="form">
-        <div>
-            <label for="name">Name</label>
-            <input type="text" name="name" required />
-            <span ng-show="form.name.$dirty && form.name.$error.required" class="signUpRequire">For animal safety, Name is required</span>
+    <form (ngSubmit)="Signup(myForm)" #myForm="ngForm" novalidate>
+
+        <div class="field" [ngClass]="{'has-error': feedbackEnabled && myName.errors}">
+            <label>Name</label>
+            <input type="text" name="name" [(ngModel)]="user.name" #myName="ngModel" required [disabled]="processing" />
+            <div *ngIf="feedbackEnabled && myName.errors">
+                <p *ngIf="myName.errors.required" class="validation">Name required</p>
+            </div>
         </div>
 
-        <div>
-            <label for="surname">Surname</label>
-            <input type="text" name="surname" required />
-            <span ng-show="form.surname.$dirty && form.surname.$error.required" class="signUpRequire">For animal safety, Surname is required</span>
+        <div class="field" [ngClass]="{'has-error': feedbackEnabled && mySurname.errors}">
+            <label>Surname</label>
+            <input type="text" name="surname" [(ngModel)]="user.surname" #mySurname="ngModel" required [disabled]="processing" />
+            <div *ngIf="feedbackEnabled && mySurname.errors">
+                <p *ngIf="mySurname.errors.required" class="validation">username required</p>
+            </div>
         </div>
 
-        <div>
-            <label for="username">Username</label>
-            <input type="text" name="username" required />
-            <span ng-show="form.username.$dirty && form.username.$error.required" class="signUpRequire">So that the rest of users see your data, Username is required</span>
+        <div class="field" [ngClass]="{'has-error': feedbackEnabled && myUsername.errors}">
+            <label>Username</label>
+            <input type="text" name="username" [(ngModel)]="user.username" #myUsername="ngModel" required minlength="6" [disabled]="processing" />
+            <div *ngIf="feedbackEnabled && myUsername.errors">
+                <p *ngIf="myUsername.errors.required" class="validation">username required</p>
+                <p *ngIf="myUsername.errors.minlength" class="validation">username is too short</p>
+            </div>
         </div>
 
-        <div>
-            <label for="email">Email</label>
-            <input type="text" name="Email" required />
-            <span ng-show="form.email.$dirty && form.email.$error.required" class="signUpRequire">Because you can contact, it will not be displayed to other users, Email is required</span>
+        <div class="field" [ngClass]="{'has-error': feedbackEnabled && myEmail.errors}">
+            <label>Email</label>
+            <input type="text" name="Email" [(ngModel)]="user.email" #myEmail="ngModel" required [disabled]="processing" />
+            <div *ngIf="feedbackEnabled && myEmail.errors">
+                <p *ngIf="myEmail.errors.required" class="validation">Email required</p>
+            </div>
         </div>
 
-        <div>
-            <label for="validation">Email Validation</label>
-            <input type="text" name="validation" required />
-            <span ng-show="form.validation.$dirty && form.validation.$error.required" class="signUpRequire">Validating the password is required</span>
+        <div class="field" [ngClass]="{'has-error': feedbackEnabled && myPassword.errors}">
+            <label>Password</label>
+            <input type="password" name="password" [(ngModel)]="user.password" #myPassword="ngModel" required minlength="8" [disabled]="processing" />
+            <div *ngIf="feedbackEnabled && myPassword.errors">
+                <p *ngIf="myPassword.errors.required" class="validation">password required</p>
+                <p *ngIf="myPassword.errors.minlength" class="validation">password is too short</p>
+            </div>
         </div>
 
-        <div>
-            <label for="password">Password</label>
-            <input type="text" name="password" required />
-            <span ng-show="form.password.$dirty && form.password.$error.required" class="signUpRequire">Password is required</span>
-        </div>
-
-        <div>
-            <button type="submit" ng-disabled="form.$invalid || vm.dataLoading">Submit</button>
-            <a href='/auth/login'>Login</a>
+        <div class="field submit">
+            <button type="submit" [disabled]="processing">Login</button>
+            <div *ngIf="feedbackEnabled && myForm.invalid">
+                <p class="validation">there are errors in the form, please review the fields</p>
+            </div>
         </div>
     </form>
 </div>

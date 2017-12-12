@@ -15,19 +15,12 @@ const apiUrl = environment.apiUrl + '/auth';
 @Injectable()
 export class AuthService {
 
-  private loaded = false;
   private user: User;
-  private userChange: Subject<User | null> = new Subject();
-
-  // Observable string stream
-  userChange$ = this.userChange.asObservable();
 
   constructor(private http: Http) {}
 
   private setUser(user: User = null) {
-    this.loaded = true;
     this.user = user;
-    this.userChange.next(user);
   }
 
   signup(user: User) {

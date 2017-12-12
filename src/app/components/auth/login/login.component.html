@@ -1,23 +1,31 @@
 <div>
     <h2>Login</h2>
 
-    <form name="form-login" role="form">
-        <div>
-            <label for="email">Email</label>
-            <input type="text" name="email" required />
-            <span ng-show="form.email.$dirty && form.email.$error.required" class="loginRequire">Email is required</span>
+    <form (ngSubmit)="login(myForm)" #myForm="ngForm" novalidate>
+
+        <div class="field" [ngClass]="{'has-error': feedbackEnabled && myEmail.errors}">
+            <label>Email</label>
+            <input type="text" name="Email" [(ngModel)]="user.email" #myEmail="ngModel" required [disabled]="processing" />
+            <div *ngIf="feedbackEnabled && myEmail.errors">
+                <p *ngIf="myEmail.errors.required" class="validation">Email required</p>
+            </div>
         </div>
 
-        <div>
-            <label for="password">Password</label>
-            <input type="password" name="password" required />
-            <span ng-show="form.password.$dirty && form.password.$error.required" class="loginRequire">Password is required</span>
+        <div class="field" [ngClass]="{'has-error': feedbackEnabled && myPassword.errors}">
+            <label>Password</label>
+            <input type="password" name="password" [(ngModel)]="user.password" #myPassword="ngModel" required minlength="8" [disabled]="processing" />
+            <div *ngIf="feedbackEnabled && myPassword.errors">
+                <p *ngIf="myPassword.errors.required" class="validation">password required</p>
+                <p *ngIf="myPassword.errors.minlength" class="validation">password is too short</p>
+            </div>
         </div>
 
-        <div>
-            <button type="submit" ng-disabled="form.$invalid || vm.dataLoading">Login</button>
-            <a href='/auth/signup'>Sign Up</a>
+        <div class="field submit">
+            <button type="submit" [disabled]="processing">Login</button>
+            <div *ngIf="feedbackEnabled && myForm.invalid">
+                <p class="validation">there are errors in the form, please review the fields</p>
+            </div>
         </div>
-
     </form>
+
 </div>
