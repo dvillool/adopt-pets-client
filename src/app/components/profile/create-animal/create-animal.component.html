@@ -1,13 +1,12 @@
 <div>
-    <h2>Login</h2>
+    <h2>Create Animal</h2>
+    <form (ngSubmit)="Create(myForm)" #myForm="ngForm" novalidate>
 
-    <form (ngSubmit)="login(myForm)" #myForm="ngForm" novalidate>
-
-        <div class="field" [ngClass]="{'has-error': feedbackEnabled && myEmail.errors}">
-            <label>Email</label>
-            <input type="text" name="Email" [(ngModel)]="user.email" #myEmail="ngModel" required [disabled]="processing" />
-            <div *ngIf="feedbackEnabled && myEmail.errors">
-                <p *ngIf="myEmail.errors.required" class="validation">Email required</p>
+        <div class="field" [ngClass]="{'has-error': feedbackEnabled && myName.errors}">
+            <label>Name</label>
+            <input type="text" name="name" [(ngModel)]="animal.name" #myName="ngModel" required [disabled]="processing" />
+            <div *ngIf="feedbackEnabled && myName.errors">
+                <p *ngIf="myName.errors.required" class="validation">Name required</p>
             </div>
         </div>
 
@@ -21,15 +20,10 @@
         </div>
 
         <div class="field submit">
-            <button type="submit" [disabled]="processing">Login</button>
-            <a [routerLink]="['/auth/signup']">If you don´t yet have an account, you can register here</a>
+            <button type="submit" [disabled]="processing">Create</button>
             <div *ngIf="feedbackEnabled && myForm.invalid">
                 <p class="validation">there are errors in the form, please review the fields</p>
             </div>
-            <div *ngIf="error">
-                <p class="validation">{{error}}</p>
-            </div>
         </div>
     </form>
-
 </div>

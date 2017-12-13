@@ -35,13 +35,19 @@ export class SignupComponent implements OnInit {
 
   Signup(theForm) {
     this.feedbackEnabled = true;
+    this.error = null;
     if (theForm.valid) {
       this.processing = true;
       this.authService.signup(this.user)
-        .subscribe((data) => {
-          console.log(data);
-          this.router.navigate(['profile']);
-        });
+        .subscribe(
+          () => {
+            this.router.navigate(['/profile']);
+          }, 
+          (err) => {
+            this.processing = false;
+            this.error = err.json().error;
+          }
+        );
     }
   }
 }

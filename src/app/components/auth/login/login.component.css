@@ -1,5 +1,9 @@
 /* -- forms -- */
 
+* {
+    font-family: verdana, sans-serif, helvetica;
+}
+
 form.is-processing {
     opacity: 0.5;
 }

@@ -1,3 +1,13 @@
 <app-navbar></app-navbar>
-<app-usermail>
-</app-usermail>
+
+<div *ngIf="user">
+    <div>
+        <h3>Welcome {{user.username}}</h3>
+        <p>You dates are:</p>
+    </div>
+    <br>
+    <p>{{user.name}}</p>
+    <p>{{user.surname}}</p>
+    <p>{{user.email}}</p>
+    <br>
+</div>

@@ -46,8 +46,12 @@
 
         <div class="field submit">
             <button type="submit" [disabled]="processing">SignUp</button>
+            <a [routerLink]="['/auth/login']" class="btn btn-link">If you alaready have an account, login here</a>
             <div *ngIf="feedbackEnabled && myForm.invalid">
                 <p class="validation">there are errors in the form, please review the fields</p>
+            </div>
+            <div *ngIf="error">
+                <p class="validation">{{error}}</p>
             </div>
         </div>
     </form>

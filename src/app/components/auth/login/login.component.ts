@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
   error: string;
 
   constructor(
-    private auth: AuthService,
+    private authService: AuthService,
     private router: Router
   ) { }
 
@@ -36,11 +36,16 @@ export class LoginComponent implements OnInit {
     this.error = null;
     if (theForm.valid) {
       this.processing = true;
-      this.auth.login(this.user)
-      .subscribe(
-        () => this.router.navigate(['/profile']),
-        (err) => this.error = err
-      );
+      this.authService.login(this.user)
+        .subscribe(
+          () => {
+            this.router.navigate(['/profile']);
+          },
+          (err) => {
+            this.processing = false;
+            this.error = err.json().error;
+          }
+        );
     }
   }
 }

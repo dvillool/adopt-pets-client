@@ -24,7 +24,10 @@ import { ProfileAnimalInfoEditPageComponent } from './pages/profile-animal-info-
 
 import { AuthService } from './services/auth.service';
 import { ProfileService } from './services/profile.service';
-import { AnimalService } from './services/animal.service';
+import { ProfileEditComponent } from './components/profile/profile-edit/profile-edit.component';
+import { MiniAnimalProfileComponent } from './components/profile/mini-animal-profile/mini-animal-profile.component';
+// import { CreateAnimalComponent } from './components/profile/create-animal/create-animal.component';
+// import { AnimalService } from './services/animal.service';
 
 const routes: Routes = [
   { path: '', redirectTo: '/intro', pathMatch: 'full'},
@@ -55,7 +58,10 @@ const routes: Routes = [
     ProfileAnimalPageComponent,
     ProfileAnimalInfoPageComponent,
     ProfileAnimalInfoEditPageComponent,
-    NavbarComponent
+    NavbarComponent,
+    ProfileEditComponent,
+    MiniAnimalProfileComponent,
+    // CreateAnimalComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +69,7 @@ const routes: Routes = [
     HttpModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [AuthService, ProfileService, AnimalService],
+  providers: [AuthService, ProfileService, /* AnimalService*/],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,13 +1,14 @@
 <div class="menu">
-    <a class="menuIcon"><span class="icon-btnMenu"></span>CONNECT</a>
+    <a class="menuIcon"><span class="icon-btnMenu"></span>ADOPT PETS</a>
 </div>
 <header>
     <nav>
         <ul>
-            <li><a [routerLink]="['/auth/login']"><span class="icon-New"></span></a>Login</li>
-            <li><a [routerLink]="['/profile']"><span class="icon-Solve"></span></a>Profile</li>
-            <li><a [routerLink]="['/profiles/edit']"><span class="icon-Preferences"></span></a>Edit</li>
-            <li><a><span class="icon-Exit"></span></a>Exit</li>
+            <li><a [routerLink]="['/profile']"><span class="icon-New"> Home</span></a></li>
+            <li><a [routerLink]="['/profile/edit']"><span class="icon-Solve"> Edit</span></a></li>
+            <li><a [routerLink]="['/animal']"><span class="icon-Preferences"> MyAnimals</span></a></li>
+            <li><a [routerLink]="['/animal/create']"><span class="icon-Solve"> AddAnimals</span></a></li>
+            <li><a [routerLink]="['/']"><span class="icon-Exit"> Exit</span></a></li>
         </ul>
     </nav>
 </header>
