@@ -29,17 +29,22 @@ import { MiniAnimalProfileComponent } from './components/profile/mini-animal-pro
 // import { CreateAnimalComponent } from './components/profile/create-animal/create-animal.component';
 // import { AnimalService } from './services/animal.service';
 
+import { InitAuthGuard } from './guards/init-auth.guard';
+import { RequireAuthGuard } from './guards/require-auth.guard';
+import { RequireAnonGuard } from './guards/require-anon.guard';
+
+
 const routes: Routes = [
   { path: '', redirectTo: '/intro', pathMatch: 'full'},
-  { path: 'intro', component: IntroPageComponent },
-  { path: 'auth/login', component: LoginPageComponent },
-  { path: 'auth/signup', component: SignupPageComponent },
-  { path: 'profile', component: ProfilePageComponent},
-  { path: 'profiles/edit', component: ProfileEditPageComponent, pathMatch: 'full' },
-  { path: 'profile/animal', component: ProfileAnimalPageComponent },
-  { path: 'profile/animal/create', component: ProfileAnimalCreatePageComponent },
-  { path: 'profile/animal/animalId', component: ProfileAnimalInfoPageComponent },
-  { path: 'profile/animal/animalId/edit', component: ProfileAnimalInfoEditPageComponent },
+  { path: 'intro', canActivate: [InitAuthGuard], component: IntroPageComponent },
+  { path: 'auth/login', canActivate: [RequireAnonGuard], component: LoginPageComponent },
+  { path: 'auth/signup', canActivate: [RequireAnonGuard], component: SignupPageComponent },
+  { path: 'profile', canActivate: [RequireAuthGuard], component: ProfilePageComponent},
+  { path: 'profiles/edit', canActivate: [RequireAuthGuard], component: ProfileEditPageComponent, pathMatch: 'full' },
+  { path: 'profile/animal', canActivate: [RequireAuthGuard], component: ProfileAnimalPageComponent },
+  { path: 'profile/animal/create', canActivate: [RequireAuthGuard], component: ProfileAnimalCreatePageComponent },
+  { path: 'profile/animal/animalId', canActivate: [RequireAuthGuard], component: ProfileAnimalInfoPageComponent },
+  { path: 'profile/animal/animalId/edit', canActivate: [RequireAuthGuard], component: ProfileAnimalInfoEditPageComponent },
 ];
 
 @NgModule({
@@ -69,7 +74,14 @@ const routes: Routes = [
     HttpModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [AuthService, ProfileService, /* AnimalService*/],
+  providers: [
+    AuthService,
+    ProfileService,
+    InitAuthGuard,
+    RequireAuthGuard,
+    RequireAnonGuard
+    /*, AnimalService*/
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

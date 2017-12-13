@@ -1,9 +1,17 @@
 <div>
-    <a [routerLink]="['/auth/signup']">
-        <button class="btn" type="click">SignUp</button>
-    </a>
+    <div *ngIf="!user">
+        <a [routerLink]="['/auth/signup']">
+            <button class="btn" type="click">SignUp</button>
+        </a>
 
-    <a [routerLink]="['/auth/login']">
-        <button class="btn" type="click">Login</button>
-    </a>
+        <a [routerLink]="['/auth/login']">
+            <button class="btn" type="click">Login</button>
+        </a>
+    </div>
+
+    <div *ngIf="user">
+        <a [routerLink]="['/profile']">
+            <button class="btn" type="click">profile</button>
+        </a>
+    </div>
 </div>
