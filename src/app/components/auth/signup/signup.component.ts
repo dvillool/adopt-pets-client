@@ -17,8 +17,6 @@ export class SignupComponent implements OnInit {
 
   user = new User({
     name: null,
-    surname: null,
-    username: null,
     email: null,
     password: null
   });
@@ -42,7 +40,7 @@ export class SignupComponent implements OnInit {
         .subscribe(
           () => {
             this.router.navigate(['/profile']);
-          }, 
+          },
           (err) => {
             this.processing = false;
             this.error = err.json().error;

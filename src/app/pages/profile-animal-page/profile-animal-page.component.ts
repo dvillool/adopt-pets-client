@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ProfileService } from '../../services/profile.service';
+import { AnimalService } from '../../services/animal.service';
+import { Observable } from 'rxjs/Observable';
+
 
 @Component({
   selector: 'app-profile-animal-page',
@@ -7,9 +11,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileAnimalPageComponent implements OnInit {
 
-  constructor() { }
+  animalList = [];
+
+  constructor(private profileService: ProfileService) { }
 
   ngOnInit() {
+     this.profileService.getAnimals()
+     .subscribe((data) => this.animalList = data,
+      (err) => console.log(err));
   }
-
 }

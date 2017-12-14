@@ -3,27 +3,11 @@
     <form (ngSubmit)="Signup(myForm)" #myForm="ngForm" novalidate>
 
         <div class="field" [ngClass]="{'has-error': feedbackEnabled && myName.errors}">
-            <label>Name</label>
-            <input type="text" name="name" [(ngModel)]="user.name" #myName="ngModel" required [disabled]="processing" />
+            <label>Organization Name</label>
+            <input type="text" name="name" [(ngModel)]="user.name" #myName="ngModel" required minlength="3" [disabled]="processing" />
             <div *ngIf="feedbackEnabled && myName.errors">
-                <p *ngIf="myName.errors.required" class="validation">Name required</p>
-            </div>
-        </div>
-
-        <div class="field" [ngClass]="{'has-error': feedbackEnabled && mySurname.errors}">
-            <label>Surname</label>
-            <input type="text" name="surname" [(ngModel)]="user.surname" #mySurname="ngModel" required [disabled]="processing" />
-            <div *ngIf="feedbackEnabled && mySurname.errors">
-                <p *ngIf="mySurname.errors.required" class="validation">username required</p>
-            </div>
-        </div>
-
-        <div class="field" [ngClass]="{'has-error': feedbackEnabled && myUsername.errors}">
-            <label>Username</label>
-            <input type="text" name="username" [(ngModel)]="user.username" #myUsername="ngModel" required minlength="3" [disabled]="processing" />
-            <div *ngIf="feedbackEnabled && myUsername.errors">
-                <p *ngIf="myUsername.errors.required" class="validation">username required</p>
-                <p *ngIf="myUsername.errors.minlength" class="validation">username is too short</p>
+                <p *ngIf="myName.errors.required" class="validation">name required</p>
+                <p *ngIf="myName.errors.minlength" class="validation">name is too short</p>
             </div>
         </div>
 

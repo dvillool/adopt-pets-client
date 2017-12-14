@@ -11,6 +11,10 @@ import { SignupComponent } from './components/auth/signup/signup.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { UsermailComponent } from './components/profile/usermail/usermail.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { ProfileEditComponent } from './components/profile/profile-edit/profile-edit.component';
+import { MiniAnimalProfileComponent } from './components/profile/mini-animal-profile/mini-animal-profile.component';
+import { CreateAnimalComponent } from './components/profile/create-animal/create-animal.component';
+
 
 import { IntroPageComponent } from './pages/intro-page/intro-page.component';
 import { SignupPageComponent } from './pages/signup-page/signup-page.component';
@@ -24,10 +28,7 @@ import { ProfileAnimalInfoEditPageComponent } from './pages/profile-animal-info-
 
 import { AuthService } from './services/auth.service';
 import { ProfileService } from './services/profile.service';
-import { ProfileEditComponent } from './components/profile/profile-edit/profile-edit.component';
-import { MiniAnimalProfileComponent } from './components/profile/mini-animal-profile/mini-animal-profile.component';
-// import { CreateAnimalComponent } from './components/profile/create-animal/create-animal.component';
-// import { AnimalService } from './services/animal.service';
+import { AnimalService } from './services/animal.service';
 
 import { InitAuthGuard } from './guards/init-auth.guard';
 import { RequireAuthGuard } from './guards/require-auth.guard';
@@ -41,10 +42,10 @@ const routes: Routes = [
   { path: 'auth/signup', canActivate: [RequireAnonGuard], component: SignupPageComponent },
   { path: 'profile', canActivate: [RequireAuthGuard], component: ProfilePageComponent},
   { path: 'profiles/edit', canActivate: [RequireAuthGuard], component: ProfileEditPageComponent, pathMatch: 'full' },
-  { path: 'profile/animal', canActivate: [RequireAuthGuard], component: ProfileAnimalPageComponent },
-  { path: 'profile/animal/create', canActivate: [RequireAuthGuard], component: ProfileAnimalCreatePageComponent },
-  { path: 'profile/animal/animalId', canActivate: [RequireAuthGuard], component: ProfileAnimalInfoPageComponent },
-  { path: 'profile/animal/animalId/edit', canActivate: [RequireAuthGuard], component: ProfileAnimalInfoEditPageComponent },
+  { path: 'animals', canActivate: [RequireAuthGuard], component: ProfileAnimalPageComponent, pathMatch: 'full' },
+  { path: 'animals/create', canActivate: [RequireAuthGuard], component: ProfileAnimalCreatePageComponent, pathMatch: 'full' },
+  { path: 'animals/:animalId', canActivate: [RequireAuthGuard], component: ProfileAnimalInfoPageComponent, pathMatch: 'full' },
+  { path: 'animals/:animalId/edit', canActivate: [RequireAuthGuard], component: ProfileAnimalInfoEditPageComponent, pathMatch: 'full' },
 ];
 
 @NgModule({
@@ -66,7 +67,7 @@ const routes: Routes = [
     NavbarComponent,
     ProfileEditComponent,
     MiniAnimalProfileComponent,
-    // CreateAnimalComponent
+    CreateAnimalComponent
   ],
   imports: [
     BrowserModule,
@@ -79,8 +80,8 @@ const routes: Routes = [
     ProfileService,
     InitAuthGuard,
     RequireAuthGuard,
-    RequireAnonGuard
-    /*, AnimalService*/
+    RequireAnonGuard,
+    AnimalService
   ],
   bootstrap: [AppComponent]
 })

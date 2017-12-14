@@ -38,4 +38,25 @@ export class ProfileService {
         }
       });
   }
+
+  createAnimal(animal) {
+    const options = new RequestOptions();
+    options.withCredentials = true;
+    return this.http.post(apiUrl + '/animal', animal, options)
+      .map(res => {
+        return res.json();
+      });
+  }
+
+  getAnimals() {
+    const options = new RequestOptions();
+    options.withCredentials = true;
+    return this.http.get(apiUrl + '/animal', options)
+      .map(res => {
+        const animalList = res.json();
+        return animalList;
+      });
+  }
 }
+
+

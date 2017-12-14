@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router'
+import { Routes, RouterModule, Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 declare var $: any;
 
@@ -10,10 +11,19 @@ declare var $: any;
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  )  { }
 
   ngOnInit() {
     this.main();
+  }
+
+  logout() {
+    this.authService.logout().subscribe(() => {
+      this.router.navigate(['/intro']);
+    });
   }
 
    main() {

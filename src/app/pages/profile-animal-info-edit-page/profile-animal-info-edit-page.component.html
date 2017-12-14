@@ -1,3 +1,4 @@
-<p>
-  profile-animal-info-edit-page works!
-</p>
+{{animal | json}}
+
+<input type="text" [(ngModel)]="animal.name">
+<button (click)="handleClick()">Save</button>

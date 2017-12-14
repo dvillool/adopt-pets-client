@@ -5,10 +5,10 @@
     <nav>
         <ul>
             <li><a [routerLink]="['/profile']"><span class="icon-New"> Home</span></a></li>
-            <li><a [routerLink]="['/profile/edit']"><span class="icon-Solve"> Edit</span></a></li>
-            <li><a [routerLink]="['/animal']"><span class="icon-Preferences"> MyAnimals</span></a></li>
-            <li><a [routerLink]="['/animal/create']"><span class="icon-Solve"> AddAnimals</span></a></li>
-            <li><a [routerLink]="['/']"><span class="icon-Exit"> Exit</span></a></li>
+            <li><a [routerLink]="['/profiles/edit']"><span class="icon-Solve"> Edit</span></a></li>
+            <li><a [routerLink]="['/animals']"><span class="icon-Preferences"> MyAnimals</span></a></li>
+            <li><a [routerLink]="['/animals/create']"><span class="icon-Solve"> AddAnimals</span></a></li>
+            <li><a (click)="logout()"><span class="icon-Exit"> Exit</span></a></li>
         </ul>
     </nav>
 </header>

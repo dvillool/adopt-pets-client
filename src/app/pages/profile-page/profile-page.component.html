@@ -1,13 +1,10 @@
 <app-navbar></app-navbar>
-
 <div *ngIf="user">
-    <div>
-        <h3>Welcome {{user.username}}</h3>
-        <p>You dates are:</p>
-    </div>
-    <br>
-    <p>{{user.name}}</p>
-    <p>{{user.surname}}</p>
-    <p>{{user.email}}</p>
-    <br>
+    <h3>Welcome {{user.name}}</h3>
+    <p>You dates are:</p>
+    <app-usermail></app-usermail>
+    <!-- <br> {{user | json}} -->
+
+    <h4>You can complete your profile now, <a [routerLink]="['/profiles/edit']"><button>here</button></a></h4>
+    <h6>(It is important that at the same time add your animals, the profile of your membership is complete)</h6>
 </div>

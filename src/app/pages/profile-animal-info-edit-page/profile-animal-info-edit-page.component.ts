@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Router, ActivatedRoute, Params} from '@angular/router';
+import { AnimalService } from '../../services/animal.service';
 
 @Component({
   selector: 'app-profile-animal-info-edit-page',
@@ -7,9 +9,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileAnimalInfoEditPageComponent implements OnInit {
 
-  constructor() { }
+  animal;
+
+  constructor(
+    private animalService: AnimalService,
+    private activatedRoute: ActivatedRoute
+  ) { }
 
   ngOnInit() {
+    this.activatedRoute.params.subscribe((params: Params) => {
+      const animalId = params['animalId'];
+      this.animalService.getAnimal(animalId).then(data => {
+        this.animal = data;
+      });
+    });
   }
 
+  handleClick() {
+    this.animalService.updateAnimal(this.animal).then((result) => console.log('saved'),
+    (err) => console.log(err));
+  }
 }

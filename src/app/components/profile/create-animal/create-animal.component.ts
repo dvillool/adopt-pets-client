@@ -1,10 +1,10 @@
-/*
 
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 
 import { AuthService } from '../../../services/auth.service';
-import { User } from '../../../models/animal.model';
+import { AnimalService } from '../../../services/animal.service';
+import { ProfileService } from '../../../services/profile.service';
 
 @Component({
   selector: 'app-create-animal',
@@ -13,37 +13,46 @@ import { User } from '../../../models/animal.model';
 })
 
 export class CreateAnimalComponent implements OnInit {
+
     feedbackEnabled = false;
     processing = false;
 
-    user = new Animal({
+    animal = {
       name: null,
       type: null,
-      shelter: null
-    });
+      description: null,
+      urgent: null,
+      adopt: null,
+      donate: null
+    };
 
     error: string;
 
       constructor(
-        private authService: AnimalService,
+        private authService: AuthService,
+        private animalService: AnimalService,
+        private profileService: ProfileService,
         private router: Router
       ) { }
 
       ngOnInit() {
       }
 
-      Create(theForm) {
+      create(theForm) {
         this.feedbackEnabled = true;
+        this.error = null;
         if (theForm.valid) {
           this.processing = true;
-          this.AnimalService.create(this.animal)
-            .subscribe((data) => {
-              console.log(data);
-              this.router.navigate(['profile', 'animal']);
-            });
+          this.profileService.createAnimal(this.animal)
+            .subscribe(
+              () => {
+                this.router.navigate(['/animals']);
+              },
+              (err) => {
+                this.processing = false;
+                this.error = err.json().error;
+              }
+            );
         }
       }
-
-}
-
-*/
+    }

@@ -1,9 +1,32 @@
 <div>
-    <div *ngIf="editing">
-        <input #profileEditControl [required]="required" (blur)="onBlur($event)" [name]="value" [(ngModel)]="value" [type]="type" [placeholder]="label" />
-    </div>
-    <div *ngIf="!editing">
-        <label class="block bold">{{label}}</label>
-        <div title="Click to edit" (click)="edit(value)" (focus)="edit(value);" tabindex="0" class="inline-edit">{{value}}&nbsp;</div>
-    </div>
+    <h2>change the data of your association</h2>
+    <form (ngSubmit)="editProfile(myForm)" #myForm="ngForm" novalidate method=PUT>
+
+        <div class="field" [ngClass]="{'has-error': feedbackEnabled && myName.errors}">
+            <label>Organization Name</label>
+            <input type="text" name="name" [(ngModel)]="user.name" #myName="ngModel" required minlength="3" [disabled]="processing" />
+            <div *ngIf="feedbackEnabled && myName.errors">
+                <p *ngIf="myName.errors.required" class="validation">name is required</p>
+                <p *ngIf="myName.errors.minlength" class="validation">name is too short</p>
+            </div>
+        </div>
+
+        <div class="field" [ngClass]="{'has-error': feedbackEnabled && myEmail.errors}">
+            <label>Email</label>
+            <input type="text" name="Email" [(ngModel)]="user.email" #myEmail="ngModel" required [disabled]="processing" />
+            <div *ngIf="feedbackEnabled && myEmail.errors">
+                <p *ngIf="myEmail.errors.required" class="validation">Email required</p>
+            </div>
+        </div>
+
+        <div class="field submit">
+            <button type="submit" [disabled]="processing">Modify</button>
+            <div *ngIf="feedbackEnabled && myForm.invalid">
+                <p class="validation">there are errors in the form, please review the fields</p>
+            </div>
+            <div *ngIf="error">
+                <p class="validation">{{error}}</p>
+            </div>
+        </div>
+    </form>
 </div>

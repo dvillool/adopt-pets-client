@@ -1,3 +1,12 @@
-<p>
-  profile-animal-page works!
-</p>
+<app-navbar></app-navbar>
+
+<div>
+    <ul>
+        <li *ngFor="let animal of animalList">
+            <div>
+                <app-mini-animal-profile [animal]="animal"></app-mini-animal-profile>
+            </div>
+        </li>
+
+    </ul>
+</div>

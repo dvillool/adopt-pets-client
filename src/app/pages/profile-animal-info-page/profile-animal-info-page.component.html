@@ -1,3 +1,9 @@
-<p>
-  profile-animal-info-page works!
-</p>
+<app-navbar></app-navbar>
+<div *ngIf="animal">
+    <h3>Welcome {{animal.name}}</h3>
+    <p>The animal's data are:</p>
+
+    <!-- <br> Els component amb les dades -->
+
+    <h4>You can modify your data<a [routerLink]="['/animals', animal._id, 'edit']"><button>here</button></a></h4>
+</div>

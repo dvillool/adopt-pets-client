@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-mini-animal-profile',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MiniAnimalProfileComponent implements OnInit {
 
-  constructor() { }
+  @Input() animal;
+
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
+  handleClick() {
+    this.router.navigate(['/animals', this.animal._id]);
+  }
 }

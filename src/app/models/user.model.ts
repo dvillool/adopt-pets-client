@@ -1,11 +1,22 @@
 export class User {
-     id: string;
-     username: string;
-     name: string;
-     surname: string;
-     password: string;
-     email: string;
-     constructor(obj: Object = {}) {
-       Object.assign(this, obj);
-     }
-   }
+  id: string;
+  logo: string;
+  name: string;
+  description: string;
+  password: string;
+  email: string;
+  adopt: boolean;
+  donate: boolean;
+  volunteers: boolean;
+  address: {
+    street: string;
+    number: number;
+    postalCode: number;
+    telephone: string;
+    city: string;
+    province: string;
+  };
+  constructor(obj: Object = {}) {
+    Object.assign(this, obj);
+  }
+}

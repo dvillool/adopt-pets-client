@@ -9,7 +9,6 @@ export class ProfileEditPageComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
 }
