@@ -10,6 +10,9 @@ import { AnimalService } from '../../services/animal.service';
 export class ProfileAnimalInfoEditPageComponent implements OnInit {
 
   animal;
+  feedbackEnabled = false;
+  processing = false;
+  error;
 
   constructor(
     private animalService: AnimalService,
@@ -24,6 +27,8 @@ export class ProfileAnimalInfoEditPageComponent implements OnInit {
       });
     });
   }
+
+  create(form) {}
 
   handleClick() {
     this.animalService.updateAnimal(this.animal).then((result) => console.log('saved'),

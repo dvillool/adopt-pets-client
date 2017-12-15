@@ -9,7 +9,7 @@ import 'rxjs/add/operator/catch';
 import { environment } from '../../environments/environment';
 import { User } from '../models/user.model';
 
-const apiUrl = environment.apiUrl + '/auth';
+const apiUrl: any = environment.apiUrl + '/auth';
 
 @Injectable()
 export class AuthService {
