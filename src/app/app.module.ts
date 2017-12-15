@@ -33,6 +33,7 @@ import { AnimalService } from './services/animal.service';
 import { InitAuthGuard } from './guards/init-auth.guard';
 import { RequireAuthGuard } from './guards/require-auth.guard';
 import { RequireAnonGuard } from './guards/require-anon.guard';
+import { AnimalEditComponent } from './components/profile/animal-edit/animal-edit.component';
 
 
 const routes: Routes = [
@@ -67,7 +68,8 @@ const routes: Routes = [
     NavbarComponent,
     ProfileEditComponent,
     MiniAnimalProfileComponent,
-    CreateAnimalComponent
+    CreateAnimalComponent,
+    AnimalEditComponent
   ],
   imports: [
     BrowserModule,
