@@ -40,5 +40,4 @@ export class AnimalService {
         console.log(err);
       });
   }
-  }
 }
